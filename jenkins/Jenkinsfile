@@ -55,7 +55,7 @@ podTemplate(label: podLabel, activeDeadlineSeconds: 180, envVars: [
             /*
               This will check out two SCM configured in GIT
              */
-            //checkout scm
+            checkout scm
 
             /*
               Initialize CLIs
