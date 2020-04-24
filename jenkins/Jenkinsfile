@@ -78,7 +78,7 @@ podTemplate(label: podLabel, activeDeadlineSeconds: 180, envVars: [
 
             stage('Deploy to ' + testEnvironment) {
                 sh """
-                cd /guestbook
+                cd guestbook
                 echo "Install ${CHART_NAME} ..."
                 PARAMETERS="replicaCount=${REPLICA_COUNT}"
                 if [ -n "${LABEL_ENVIRONMENT}" ]; then
