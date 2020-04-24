@@ -1,4 +1,4 @@
-def podLabel = "devops-mcm-demo-${UUID.randomUUID().toString()}"
+def podLabel = "cp4mcm-devops-demo-${UUID.randomUUID().toString()}"
 
 /*
   Required: Pod Environment Variables
