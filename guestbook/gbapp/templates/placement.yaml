@@ -1,0 +1,22 @@
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementPolicy
+metadata:
+  name: {{ template "guestbookapplication.fullname" . }}
+  labels:
+    app: {{ template "guestbookapplication.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    name: {{ template "guestbookapplication.fullname" . }}
+    servicekind: CacheService
+spec:
+  replicas: {{ .Values.replicaCount }}
+  clusterSelector:
+    matchLabels:
+      {{- range $key, $val := .Values.targetCluster.labelSelector.matchLabels }}
+      {{ $key }}: {{ $val | quote }}
+      {{- end}}
+  resourceSelector:
+    {{- range $key, $val := .Values.targetCluster.resourceSelector }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end}}
