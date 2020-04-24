@@ -64,6 +64,9 @@ podTemplate(label: podLabel, activeDeadlineSeconds: 180, envVars: [
                 withCredentials([usernamePassword(credentialsId: clusterCredentialId, passwordVariable: 'CLUSTER_PASSWORD', usernameVariable: 'CLUSTER_USERNAME')]) {
                     sh """
                     echo "Checking kubectl version"
+                    which kubectl
+                    which cloudctl
+                    which helm
                     ls -alrt /usr/local/bin/*
                     kubectl --version
                     
