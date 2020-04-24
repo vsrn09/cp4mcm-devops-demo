@@ -63,13 +63,6 @@ podTemplate(label: podLabel, activeDeadlineSeconds: 180, envVars: [
             stage('Initialize CLIs') {
                 withCredentials([usernamePassword(credentialsId: clusterCredentialId, passwordVariable: 'CLUSTER_PASSWORD', usernameVariable: 'CLUSTER_USERNAME')]) {
                     sh """
-                    echo "Checking kubectl version"
-                    which kubectl
-                    which cloudctl
-                    which helm
-                    ls -alrt /usr/local/bin/*
-                    kubectl --version
-                    
                     echo "Initializing Helm ..."
                     export HELM_HOME=${HELM_HOME}
                     helm init -c
