@@ -6,10 +6,10 @@ def podLabel = "cp4mcm-devops-demo-${UUID.randomUUID().toString()}"
 def clusterNamespace = env.CLUSTER_NAMESPACE ?: "default"
 def clusterAccountId = env.CLUSTER_ACCOUNT_ID ?: "id-sestg-cluster-account"
 def clusterCredentialId = env.CLUSTER_CREDENTIAL_ID ?: "id-sestg-cluster-credentials"
-def clusterURL = env.CLUSTER_URL ?: "172.16.50.227:8443"
+def clusterURL = env.CLUSTER_URL ?: "172.18.15.35:443"
 def helmReleaseName = env.HELM_RELEASE_NAME ?: "guestbook"
 def replicaCount = env.REPLICA_COUNT ?: "1"
-def pipelineImage = env.PIPELINE_IMAGE ?: "ibmcase/kube-helm-cloudctl-mcmctl:3"
+def pipelineImage = env.PIPELINE_IMAGE ?: "venkatnamala/oc-kubctl-heml-cloudctl:1.0"
 
 /*
   Deployment Labels
@@ -31,7 +31,7 @@ def testEnvironment = env.TEST_ENVIRONMENT ?: "Dev"
 /*
   POD Template
  */
-podTemplate(label: podLabel, envVars: [
+podTemplate(label: podLabel, activeDeadlineSeconds: 180, envVars: [
         envVar(key: 'CLUSTER_NAMESPACE', value: clusterNamespace),
         envVar(key: 'CLUSTER_ACCOUNT_ID', value: clusterAccountId),
         envVar(key: 'CLUSTER_URL', value: clusterURL),
