@@ -63,11 +63,11 @@ podTemplate(label: podLabel, activeDeadlineSeconds: 180, envVars: [
             stage('Initialize CLIs') {
                 withCredentials([usernamePassword(credentialsId: clusterCredentialId, passwordVariable: 'CLUSTER_PASSWORD', usernameVariable: 'CLUSTER_USERNAME')]) {
                     sh """
-                    echo "Login with cloudctl ..."
-                    cloudctl login -a ${CLUSTER_URL} -u ${CLUSTER_USERNAME}  -p "${CLUSTER_PASSWORD}" -c ${CLUSTER_ACCOUNT_ID} -n ${CLUSTER_NAMESPACE} ${SKIP_SSL_VALIDATION}
                     echo "Initializing Helm ..."
                     export HELM_HOME=${HELM_HOME}
                     helm init -c
+                    echo "Login with cloudctl ..."
+                    cloudctl login -a ${CLUSTER_URL} -u ${CLUSTER_USERNAME}  -p "${CLUSTER_PASSWORD}" -c ${CLUSTER_ACCOUNT_ID} -n ${CLUSTER_NAMESPACE} ${SKIP_SSL_VALIDATION}
                     """
                 }
             }
