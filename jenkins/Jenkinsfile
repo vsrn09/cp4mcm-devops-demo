@@ -68,6 +68,7 @@ podTemplate(label: podLabel, activeDeadlineSeconds: 180, envVars: [
                     helm init -c
                     echo "Login with cloudctl ..."
                     cloudctl login -a ${CLUSTER_URL} -u ${CLUSTER_USERNAME}  -p "${CLUSTER_PASSWORD}" -c ${CLUSTER_ACCOUNT_ID} -n ${CLUSTER_NAMESPACE} ${SKIP_SSL_VALIDATION}
+                    helm list
                     """
                 }
             }
